@@ -14,8 +14,8 @@ import PageObjectModel.ProductCatalog;
 public class StandAloneTest {
 	public static void main(String[] args) throws InterruptedException {
 		String HomeURL = "https://rahulshettyacademy.com/client/";
-		String userName = "testaccounts@test.com";
-		String password = "123456Aa#";
+		String userName = "";
+		String password = "";
 		String productName= "ADIDAS ORIGINAL";
 		String expectedAddToCartText = "Product Added To Cart";
 		String expectedSubTotal = "$31500";
