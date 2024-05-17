@@ -16,14 +16,13 @@ public class BaseTests {
 	public WebDriver initializeDriver() throws IOException {
 		
 		Properties properties = new Properties();
-		FileInputStream fis = new FileInputStream("C:\\Users\\Al-Amin\\eclipse-workspace\\seleniumFramework\\src\\main\\java\\resourses\\GlobalData.properties");
+		FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\java\\resourses\\GlobalData.properties");
 		properties.load(fis);
 		
 		String browserName = properties.getProperty("browser");
 		
 		if(browserName.contains("chrome")) {
 			driver = new ChromeDriver();
-			System.out.println("got chrome");
 		}
 		
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
