@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2024-05-17T20:25:45 BDT" name="Default suite" finished-at="2024-05-17T20:26:06 BDT" duration-ms="21125">
+    <groups>
+    </groups>
+    <test started-at="2024-05-17T20:25:45 BDT" name="Default test" finished-at="2024-05-17T20:26:06 BDT" duration-ms="21125">
+      <class name="seleniumTests.StandAloneTest">
+        <test-method signature="EndToEndTest()[pri:0, instance:seleniumTests.StandAloneTest@273e7444]" started-at="2024-05-17T20:25:45 BDT" name="EndToEndTest" finished-at="2024-05-17T20:26:06 BDT" duration-ms="21058" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- EndToEndTest -->
+      </class> <!-- seleniumTests.StandAloneTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
