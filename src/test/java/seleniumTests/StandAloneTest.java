@@ -7,30 +7,21 @@ import org.testng.annotations.Test;
 
 import PageObjectModel.CartPage;
 import PageObjectModel.Checkout;
-import PageObjectModel.LandingPage;
 import PageObjectModel.ProductCatalog;
 import TestComponents.BaseTests;
 
 public class StandAloneTest extends BaseTests{
 	@Test
-	public void EndToEndTest() throws IOException, InterruptedException {
-		String HomeURL = "https://rahulshettyacademy.com/client/";
-		String userName = "";
-		String password = "";
+	public void submitOrder() throws IOException, InterruptedException {
+		String userName = "testaccounts@test.com";
+		String password = "123456Aa#";
 		String productName= "ADIDAS ORIGINAL";
-		String expectedAddToCartText = "Product Added To Cart";
 		String expectedSubTotal = "$31500";
 		String expectedTotal = "$31500";
 		String countryName = "bangladesh";
 		
-//		WebDriver driver = new ChromeDriver();
-//		driver.manage().window().maximize();
-//		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-//		driver.get(HomeURL);
-		launchApplication(HomeURL);
-		
+		//launchApplication(HomeURL);
 		// -------------------------------------------------Login the page---------------------------------------------------------
-		LandingPage landingPage = new LandingPage(driver);
 		landingPage.login(userName, password);
 		Thread.sleep(3000);
 		
@@ -61,9 +52,7 @@ public class StandAloneTest extends BaseTests{
 		Assert.assertTrue(confirmMessage.equalsIgnoreCase("THANKYOU FOR THE ORDER."));
 		//get order id
 		String orderID= checkout.getOrderId();
-		System.out.println(orderID);
-		
-		driver.close();
+		System.out.println(orderID);	
 	}
 
 }

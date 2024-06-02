@@ -19,12 +19,20 @@ public class LandingPage extends AbstractComponent{
 	@FindBy(id="userEmail") WebElement userEmail;
 	@FindBy(id="userPassword") WebElement userPassword;
 	@FindBy(id="login") WebElement loginButton;
+	@FindBy(css="[class*='flyInOut']") WebElement errorMessage;
 	
 	public void login(String email, String password) {
 		userEmail.sendKeys(email);
 		userPassword.sendKeys(password);
 		loginButton.click();
 	}
+	
+	public String getErrorMessage() {
+		waitForElementAppear(errorMessage);
+		return errorMessage.getText();
+	}
+	
+	
 	
 	public void gotoHome(String url){
 		driver.get(url);

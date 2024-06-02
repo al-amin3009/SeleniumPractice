@@ -26,6 +26,10 @@ public class AbstractComponent {
 		wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(findBy));
 	}
 	
+	public void waitForElementAppear(WebElement element) {
+		wait.until(ExpectedConditions.visibilityOf(element));
+	}
+	
 	public void waitForElementDisappear(WebElement findElement) {
 		wait.until(ExpectedConditions.invisibilityOf(findElement));
 	}
