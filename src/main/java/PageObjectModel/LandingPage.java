@@ -22,7 +22,9 @@ public class LandingPage extends AbstractComponent{
 	@FindBy(css="[class*='flyInOut']") WebElement errorMessage;
 	
 	public void login(String email, String password) {
+		userEmail.clear();
 		userEmail.sendKeys(email);
+		userPassword.clear();
 		userPassword.sendKeys(password);
 		loginButton.click();
 	}

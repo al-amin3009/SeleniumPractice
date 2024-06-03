@@ -7,15 +7,17 @@ import org.testng.annotations.Test;
 
 import PageObjectModel.CartPage;
 import PageObjectModel.Checkout;
+import PageObjectModel.OrderHistoryPage;
 import PageObjectModel.ProductCatalog;
 import TestComponents.BaseTests;
 
 public class StandAloneTest extends BaseTests{
+	String userName = "testaccounts@test.com";
+	String password = "123456Aa#";
+	String productName= "ADIDAS ORIGINAL";
+	String orderID;
 	@Test
 	public void submitOrder() throws IOException, InterruptedException {
-		String userName = "testaccounts@test.com";
-		String password = "123456Aa#";
-		String productName= "ADIDAS ORIGINAL";
 		String expectedSubTotal = "$31500";
 		String expectedTotal = "$31500";
 		String countryName = "bangladesh";
@@ -51,8 +53,19 @@ public class StandAloneTest extends BaseTests{
 		String confirmMessage = checkout.getConfirmMessage();
 		Assert.assertTrue(confirmMessage.equalsIgnoreCase("THANKYOU FOR THE ORDER."));
 		//get order id
-		String orderID= checkout.getOrderId();
+		orderID= checkout.getOrderId();
+		orderID= orderID.split(" | ")[1];
+		
 		System.out.println(orderID);	
+	}
+	
+	@Test(dependsOnMethods={"submitOrder"})
+	public void OrderHistory() {
+		//landingPage.login(userName, password);
+		landingPage.goToTheOrderHistory();
+		OrderHistoryPage orderPage = new OrderHistoryPage(driver);
+		Assert.assertEquals(orderPage.getOrderHistory(), productName);
+		Assert.assertEquals(orderPage.getOrderHistoryID(), orderID);
 	}
 
 }

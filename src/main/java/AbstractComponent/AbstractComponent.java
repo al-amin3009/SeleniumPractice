@@ -20,6 +20,7 @@ public class AbstractComponent {
 		PageFactory.initElements(driver, this);
 	}
 	@FindBy(css="[routerlink*='cart']") WebElement cartButton;
+	@FindBy(css="[routerlink*='/dashboard/myorders']") WebElement orderButton;
 	
 	
 	public void waitForElementAppear(By findBy) {
@@ -36,5 +37,9 @@ public class AbstractComponent {
 	
 	public void goToTheCartPage () {
 		cartButton.click();
+	}
+	
+	public void goToTheOrderHistory() {
+		orderButton.click();
 	}
 }

@@ -10,7 +10,7 @@ import PageObjectModel.ProductCatalog;
 import TestComponents.BaseTests;
 
 public class ErrroValidations extends BaseTests{
-	@Test
+	@Test(groups= {"ErrorHandling"})
 	public void loginErrorValidation() throws IOException, InterruptedException {
 		String userName = "testaccount@test.com";
 		String password = "123456Aa";

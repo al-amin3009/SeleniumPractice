@@ -45,7 +45,7 @@ public class ProductCatalog extends AbstractComponent{
 	public void addProductToCart(String productName) {
 		WebElement getProduct = getProductByName(productName);
 		productTitle = getProduct.findElement(productTitleBy).getText();
-		System.out.println(productTitle);
+//		System.out.println(productTitle);
 		getProduct.findElement(addToCart).click();
 		waitForElementAppear(toastMessageBy);
 		waitForElementDisappear(loadingAnimator);
