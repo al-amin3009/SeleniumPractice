@@ -1,8 +1,11 @@
 package seleniumTests;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
 
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import PageObjectModel.CartPage;
@@ -12,16 +15,18 @@ import PageObjectModel.ProductCatalog;
 import TestComponents.BaseTests;
 
 public class StandAloneTest extends BaseTests{
-	String userName = "testaccounts@test.com";
-	String password = "123456Aa#";
-	String productName= "ADIDAS ORIGINAL";
+	String userName;
+	String password;
+	String productName;
 	String orderID;
-	@Test
-	public void submitOrder() throws IOException, InterruptedException {
+	@Test(dataProvider="getData")
+	public void submitOrder(HashMap<String, String> map) throws IOException, InterruptedException {
 		String expectedSubTotal = "$31500";
 		String expectedTotal = "$31500";
 		String countryName = "bangladesh";
-		
+		this.productName = map.get("productName");
+		this.userName= map.get("email");
+		this.password= map.get("password");
 		//launchApplication(HomeURL);
 		// -------------------------------------------------Login the page---------------------------------------------------------
 		landingPage.login(userName, password);
@@ -61,11 +66,21 @@ public class StandAloneTest extends BaseTests{
 	
 	@Test(dependsOnMethods={"submitOrder"})
 	public void OrderHistory() {
-		//landingPage.login(userName, password);
+		landingPage.login(userName, password);
 		landingPage.goToTheOrderHistory();
 		OrderHistoryPage orderPage = new OrderHistoryPage(driver);
 		Assert.assertEquals(orderPage.getOrderHistory(), productName);
 		Assert.assertEquals(orderPage.getOrderHistoryID(), orderID);
+	}
+	
+	@DataProvider
+	public Object[][] getData() throws IOException
+	{
+		List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir")+"\\src\\test\\java\\Data\\PurchaseOrder.json");
+		return new Object[][] {
+			{data.get(0)},
+			{data.get(1)}
+		};
 	}
 
 }
